@@ -2,6 +2,8 @@
 
 ```javascript
 $ yarn create t3-app
+or pnpm dlx create-t3-app@latest --CI --trpc --tailwind
+
 $ yarn create v1.22.19
 [1/4] Resolving packages...
 [2/4] Fetching packages...
@@ -36,6 +38,19 @@ Adding boilerplate...
 ✔ Successfully setup boilerplate for tailwind
 ✔ Successfully setup boilerplate for trpc
 ✔ Successfully setup boilerplate for envVariables
+
+$ cd t3-app-demo
+$ yarn prisma db push
+yarn run v1.22.19
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": SQLite database "db.sqlite" at "file:./db.sqlite"
+
+SQLite database db.sqlite created at file:./db.sqlite
+
+🚀  Your database is now in sync with your Prisma schema. Done in 87ms
+
+$ yarn dev
 ```
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
