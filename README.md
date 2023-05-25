@@ -1,4 +1,13 @@
-# Create T3 App
+# Create T3 App Demo
+
+# Tech Stack
+- [x] Next.js
+- [x] NextAuth.js
+- [x] Prisma
+- [x] Tailwind
+- [x] tRPC
+- [x] Discord
+- [x] zod
 
 ```javascript
 $ yarn create t3-app
@@ -52,6 +61,11 @@ SQLite database db.sqlite created at file:./db.sqlite
 
 $ yarn dev
 ```
+
+## Discord
+![alt text](./doc/discord.jpg)
+
+![alt text](./doc/discord1.jpg)
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
