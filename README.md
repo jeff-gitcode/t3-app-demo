@@ -61,6 +61,8 @@ SQLite database db.sqlite created at file:./db.sqlite
 
 $ yarn dev
 
+# discord provider https://discord.com/developers/applications
+
 # prisma studio
 $ npx prisma studio
 ```
