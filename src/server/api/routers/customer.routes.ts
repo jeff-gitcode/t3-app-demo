@@ -1,6 +1,6 @@
-import { createTRPCRouter, publicProcedure } from "../api/trpc";
-import { createCustomerHandler, updateCustomerHandler, getCustomersHandler, getCustomerByIdHandler, deleteCustomerHandler } from "../controller/customer.controller";
-import { createCustomerSchema, filterQuery, params, updateCustomerSchema } from "../schema/customer.schema";
+import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createCustomerHandler, updateCustomerHandler, getCustomersHandler, getCustomerByIdHandler, deleteCustomerHandler } from "../../controller/customer.controller";
+import { createCustomerSchema, filterQuery, params, updateCustomerSchema } from "../../schema/customer.schema";
 
 export const customerRouter = createTRPCRouter({
     createCustomer: publicProcedure
