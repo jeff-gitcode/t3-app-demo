@@ -8,6 +8,8 @@
 - [x] tRPC
 - [x] Discord
 - [x] zod
+- [x] react-toastify
+- [x] react-hook-form
 
 ```javascript
 $ yarn create t3-app
