@@ -15,7 +15,7 @@ export const Card: NextPage<CardProps> = ({ children }) => {
 
 export const CardContent: NextPage<CardProps> = ({ children }) => {
     return (
-        <div className="bg-white w-5/6 md:w-4/6 lg:w-3/6 xl:w-2/6 rounded-lg drop-shadow-md">
+        <div className="bg-white w-full rounded-lg drop-shadow-md">
             {children}
         </div>
     );
@@ -38,7 +38,7 @@ export const CardHeader: NextPage<CardHeaderProps> = ({
                 <h1 className="text-base font-medium tracking-wide text-gray-900 mr-2">
                     {title}
                 </h1>
-                <span className="h-5 w-5 bg-blue-200 text-blue-600 flex items-center justify-center rounded-full text-xs">
+                <span className="h-5 w-full bg-blue-200 text-blue-600 flex items-center justify-center rounded-full text-xs">
                     {listLength}
                 </span>
             </div>

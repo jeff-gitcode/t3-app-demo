@@ -11,12 +11,6 @@ interface ListItemProps {
 const ListItemComponent: NextPage<ListItemProps> = ({ item, onUpdate }) => {
     return (
         <div className="h-12 border-b flex items-center justify-start px-3">
-            {/* <input
-                type="checkbox"
-                className="w-4 h-4 border-gray-300 rounded mr-4"
-                defaultChecked={item.checked as boolean}
-                onChange={() => onUpdate?.(item)}
-            /> */}
             <span className="text-gray-600 tracking-wide text-sm">{item.id} - </span>
             <span className="text-gray-600 tracking-wide text-sm">{item.firstName} - </span>
             <span className="text-gray-600 tracking-wide text-sm">{item.lastName} - </span>

@@ -21,44 +21,6 @@ import { CardForm } from "~/components/CardForm";
 const CustomerHome: NextPage = () => {
     const [itemName, setItemName] = useState<string>("");
 
-    // const { data: list, refetch } = trpc.useQuery(["findAll"]);
-    // const insertMutation = trpc.useMutation(["insertOne"], {
-    //   onSuccess: () => refetch(),
-    // });
-    // const deleteAllMutation = trpc.useMutation(["deleteAll"], {
-    //   onSuccess: () => refetch(),
-    // });
-    // const updateOneMutation = trpc.useMutation(["updateOne"], {
-    //   onSuccess: () => refetch(),
-    // });
-
-    // const insertOne = useCallback(() => {
-    //   if (itemName === "") return;
-
-    //   insertMutation.mutate({
-    //     title: itemName,
-    //   });
-
-    //   setItemName("");
-    // }, [itemName, insertMutation]);
-
-    // const clearAll = useCallback(() => {
-    //   if (list?.length) {
-    //     deleteAllMutation.mutate({
-    //       ids: list.map((item) => item.id),
-    //     });
-    //   }
-    // }, [list, deleteAllMutation]);
-
-    // const updateOne = useCallback(
-    //   (item: Customer) => {
-    //     updateOneMutation.mutate({
-    //       ...item,
-    //       // checked: !item.checked,
-    //     });
-    //   },
-    //   [updateOneMutation]
-    // );
 
     const { data: list, isLoading } = api.customer.getCustomers.useQuery({ limit: 10, page: 1 });
 
@@ -99,10 +61,7 @@ const CustomerHome: NextPage = () => {
                     <CardForm
                         value={itemName}
                         onChange={(e) => setItemName(e.target.value)}
-                        // submit={insertOne}
-                        submit={() => {
-                            console.log("submit")
-                        }}
+                    // submit={handleSubmit}
                     />
                 </Card>
             </main>

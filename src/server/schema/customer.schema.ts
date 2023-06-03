@@ -1,17 +1,17 @@
 import { boolean, number, object, string, TypeOf } from 'zod';
 
 export const createCustomerSchema = object({
-    firstName: string({
-        required_error: 'First Name is required',
+    firstName: string().min(1, {
+        message: 'First Name is required',
     }),
-    lastName: string({
-        required_error: 'Last Name is required',
+    lastName: string().min(1, {
+        message: 'Last Name is required',
     }),
-    email: string({
-        required_error: 'Email is required',
+    email: string().min(1, {
+        message: 'Email is required',
     }),
-    password: string({
-        required_error: 'Password is required',
+    password: string().min(1, {
+        message: 'Password is required',
     })
 });
 
