@@ -93,7 +93,12 @@ const AuthShowcase: React.FC = () => {
       >
         {sessionData ? "Sign out" : "Sign in"}
       </button>
-      {sessionData && <CustomerHome />}
+      {sessionData && <Link
+        href={`/customer`}
+        className="btn btn-sm btn-primary mr-1 bg-white"
+      >
+        Customer
+      </Link>}
     </div>
   );
 };

@@ -24,13 +24,13 @@ export const CardContent: NextPage<CardProps> = ({ children }) => {
 export interface CardHeaderProps {
     title: string;
     listLength: number;
-    clearAllFn?: () => void;
+    signOut?: () => void;
 }
 
 export const CardHeader: NextPage<CardHeaderProps> = ({
     title,
     listLength,
-    clearAllFn,
+    signOut,
 }) => {
     return (
         <div className="flex flex-row items-center justify-between p-3 border-b border-slate-200">
@@ -45,9 +45,9 @@ export const CardHeader: NextPage<CardHeaderProps> = ({
             <button
                 className="text-sm font-medium text-gray-600 underline"
                 type="button"
-                onClick={clearAllFn}
+                onClick={signOut}
             >
-                Clear all
+                Sign Out
             </button>
         </div>
     );

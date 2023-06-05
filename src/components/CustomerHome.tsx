@@ -5,7 +5,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "~/utils/api";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 // import { trpc } from "@/utils/trpc";
 
 import {
@@ -17,12 +17,14 @@ import {
 import { Customer } from "@prisma/client";
 import { List, ListItem } from "~/components/ListItem";
 import { CardForm } from "~/components/CardForm";
+import router from "next/router";
+import { getCustomers } from "~/utils/customer.hooks";
+
 
 const CustomerHome: NextPage = () => {
     const [itemName, setItemName] = useState<string>("");
 
-
-    const { data: list, isLoading } = api.customer.getCustomers.useQuery({ limit: 10, page: 1 });
+    const { data: list, isLoading } = getCustomers();
 
     if (isLoading) return <div>Fetching data...</div>;
 
@@ -40,13 +42,20 @@ const CustomerHome: NextPage = () => {
                         <CardHeader
                             title="Customer List"
                             listLength={list?.data.customers.length ?? 0}
-                            // clearAllFn={clearAll}
-                            clearAllFn={() => {
-                                console.log("clearAll")
+                            signOut={() => {
+                                console.log("signOut");
+                                signOut();
+                                // router.push('/');
                             }}
                         />
+                        <Link
+                            href={`/customer/add`}
+                            className="btn btn-sm btn-primary mr-1"
+                        >
+                            Add
+                        </Link>
                         <List>
-                            {list?.data.customers?.map((item) => (
+                            {list?.data.customers?.map((item: Customer) => (
                                 <ListItem
                                     key={item.id}
                                     item={item}
@@ -58,11 +67,6 @@ const CustomerHome: NextPage = () => {
                             ))}
                         </List>
                     </CardContent>
-                    <CardForm
-                        value={itemName}
-                        onChange={(e) => setItemName(e.target.value)}
-                    // submit={handleSubmit}
-                    />
                 </Card>
             </main>
         </>

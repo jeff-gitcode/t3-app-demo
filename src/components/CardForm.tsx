@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { NextPage } from "next";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,38 +9,34 @@ import { api } from "~/utils/api";
 import { toast, ToastContainer } from "react-toastify";
 
 import 'react-toastify/dist/ReactToastify.css';
+import { NextRouter, useRouter } from "next/router";
+import { Customer } from ".prisma/client";
+import { updateCustomer, createCustomer } from "~/utils/customer.hooks";
 export interface CardFormProps {
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    // id?: string;
+    // onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    user?: Customer;
     // submit: (d: React.FormEvent<HTMLFormElement>) => void;
 }
 
 export const CardForm: NextPage<CardFormProps> = ({
-    value, onChange,
+    // id,
+    // onChange,
+    user
     // submit,
 }) => {
+    const router = useRouter();
 
-    const { mutate: createCustomerMutation, isLoading } = api.customer.createCustomer.useMutation({
-        onSuccess(data) {
-            console.log(data);
-            toast(`${data.data.customer.firstName} ${data.data.customer.firstName} created!`, {
-                type: "success",
-                position: "top-right",
-                autoClose: 5000,
-            });
-        },
-        onError(error) {
-            console.log(error);
-            toast(error.message, {
-                type: "error",
-                position: "top-right",
-                autoClose: 5000,
-            });
-        },
-    });
+    const { mutate: updateCustomerMutation } = updateCustomer(router);
+
+    const { mutate: createCustomerMutation, isLoading: isCreating } = createCustomer(router);
+
+    console.log("user=");
+    console.log(user);
 
     const methods = useForm<CreateCustomerInput>({
         resolver: zodResolver(createCustomerSchema),
+        defaultValues: user
     });
 
     const {
@@ -50,9 +46,21 @@ export const CardForm: NextPage<CardFormProps> = ({
     } = methods;
 
     const onHandleSubmit: SubmitHandler<CreateCustomerInput> = (data) => {
-        console.log(data);
-        createCustomerMutation(data);
+        if (user?.id) {
+            console.log("update");
+            updateCustomerMutation({
+                data: data,
+                params: {
+                    id: user?.id,
+                }
+            });
+        } else {
+            console.log(data);
+            createCustomerMutation(data);
+        }
     };
+
+    if (isCreating) return <div>Creating data...</div>;
 
     return (
         <section className="py-8 bg-ct-blue-600 grid place-items-center">
@@ -86,3 +94,4 @@ export const CardForm: NextPage<CardFormProps> = ({
             </div>
         </section>);
 };
+
