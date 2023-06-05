@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { NextRouter, useRouter } from "next/router";
 import { Customer } from ".prisma/client";
 import { updateCustomer, createCustomer } from "~/utils/customer.hooks";
+import Link from "next/link";
 export interface CardFormProps {
     // id?: string;
     // onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -31,9 +32,6 @@ export const CardForm: NextPage<CardFormProps> = ({
 
     const { mutate: createCustomerMutation, isLoading: isCreating } = createCustomer(router);
 
-    console.log("user=");
-    console.log(user);
-
     const methods = useForm<CreateCustomerInput>({
         resolver: zodResolver(createCustomerSchema),
         defaultValues: user
@@ -47,7 +45,6 @@ export const CardForm: NextPage<CardFormProps> = ({
 
     const onHandleSubmit: SubmitHandler<CreateCustomerInput> = (data) => {
         if (user?.id) {
-            console.log("update");
             updateCustomerMutation({
                 data: data,
                 params: {
@@ -55,7 +52,6 @@ export const CardForm: NextPage<CardFormProps> = ({
                 }
             });
         } else {
-            console.log(data);
             createCustomerMutation(data);
         }
     };
@@ -65,7 +61,7 @@ export const CardForm: NextPage<CardFormProps> = ({
     return (
         <section className="py-8 bg-ct-blue-600 grid place-items-center">
             <div>
-                <h1>Card Form</h1>
+                <h1>Customer Form</h1>
             </div>
             <div className="w-full">
                 <FormProvider {...methods}>
@@ -77,7 +73,15 @@ export const CardForm: NextPage<CardFormProps> = ({
                         <FormField label="Last Name" name="lastName" />
                         <FormField label="Email" name="email" type="email" />
                         <FormField label="Password" name="password" type="password" />
-                        <input type="submit" value="Submit" className="bg-ct-blue-600 hover:bg-ct-blue-700 text-blue font-bold py-2 px-4 rounded" />
+                        <div className="flex flex-row">
+                            <input type="submit" value="Submit" className="font-bold btn btn-sm btn-primary bg-blue-600 mr-1 w-24 py-3 px-2 hover:bg-[#f5f5f5] flex items-center gap-2 cursor-pointer transition ease-in duration-300 rounded-full " />
+                            <Link
+                                href={`/customer`}
+                                className="font-bold btn btn-sm btn-primary bg-blue-600 mr-1 w-24 py-3 px-2 hover:bg-[#f5f5f5] flex items-center gap-2 cursor-pointer transition ease-in duration-300 rounded-full "
+                            >
+                                Cancel
+                            </Link>
+                        </div>
                     </form>
                 </FormProvider>
                 <ToastContainer

@@ -17,14 +17,14 @@ const FormField: React.FC<FormFieldProps> = ({
         formState: { errors },
     } = useFormContext();
     return (
-        <div className=''>
-            <label htmlFor={name} className='block text-ct-blue-600 mb-3'>
+        <div className='mb-3'>
+            <label htmlFor={name} className='font-bold block text-ct-blue-600 mb-3'>
                 {label}
             </label>
             <input
                 type={type}
                 placeholder=' '
-                className='block w-full rounded-2xl appearance-none focus:outline-none py-2 px-4'
+                className='bg-slate-200 mt-2 flex h-12 w-full items-center justify-center rounded-xl border p-3 text-sm outline-none'
                 {...register(name)}
             />
             {errors[name] && (

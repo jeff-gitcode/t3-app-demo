@@ -11,6 +11,9 @@
 - [x] react-toastify
 - [x] react-hook-form
 
+# Demo
+![alt text](./doc/t3-app-demo.gif)
+
 ```javascript
 $ yarn create t3-app
 or pnpm dlx create-t3-app@latest --CI --trpc --tailwind

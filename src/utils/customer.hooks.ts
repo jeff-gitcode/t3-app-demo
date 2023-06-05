@@ -29,7 +29,6 @@ export function deleteCustomer(): { mutate: any; isLoading: any; } {
 export function createCustomer(router: NextRouter): { mutate: any; isLoading: any; } {
     return api.customer.createCustomer.useMutation({
         onSuccess(data) {
-            console.log(data);
             toast(`${data.data.customer.firstName} ${data.data.customer.firstName} created!`, {
                 type: "success",
                 position: "top-right",
@@ -38,7 +37,6 @@ export function createCustomer(router: NextRouter): { mutate: any; isLoading: an
             router.push('/customer');
         },
         onError(error) {
-            console.log(error);
             toast(error.message, {
                 type: "error",
                 position: "top-right",
@@ -51,7 +49,6 @@ export function createCustomer(router: NextRouter): { mutate: any; isLoading: an
 export function updateCustomer(router: NextRouter): { mutate: any; } {
     return api.customer.updateCustomer.useMutation({
         onSuccess(data) {
-            console.log(data);
             toast(`${data.data.customer.firstName} ${data.data.customer.firstName} updated!`, {
                 type: "success",
                 position: "top-right",
@@ -60,7 +57,6 @@ export function updateCustomer(router: NextRouter): { mutate: any; } {
             router.push('/customer');
         },
         onError(error) {
-            console.log(error);
             toast(error.message, {
                 type: "error",
                 position: "top-right",

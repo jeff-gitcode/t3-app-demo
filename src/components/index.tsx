@@ -35,15 +35,15 @@ export const CardHeader: NextPage<CardHeaderProps> = ({
     return (
         <div className="flex flex-row items-center justify-between p-3 border-b border-slate-200">
             <div className="flex flex-row items-center justify-between">
-                <h1 className="text-base font-medium tracking-wide text-gray-900 mr-2">
+                <h1 className="text-base font-bold tracking-wide text-gray-900 mr-2">
                     {title}
                 </h1>
-                <span className="h-5 w-full bg-blue-200 text-blue-600 flex items-center justify-center rounded-full text-xs">
+                <span className="h-5 w-full hover:bg-blue-200 text-blue-600 flex items-center justify-center rounded-full text-xs">
                     {listLength}
                 </span>
             </div>
             <button
-                className="text-sm font-medium text-gray-600 underline"
+                className="font-bold text-sm text-gray-600 bg-blue-600 mr-1 w-24 py-3 px-2 hover:bg-blue-200 flex items-center justify-center rounded-full text-xs"
                 type="button"
                 onClick={signOut}
             >

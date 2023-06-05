@@ -19,6 +19,7 @@ import { List, ListItem } from "~/components/ListItem";
 import { CardForm } from "~/components/CardForm";
 import router from "next/router";
 import { getCustomers } from "~/utils/customer.hooks";
+import { ToastContainer } from "react-toastify";
 
 
 const CustomerHome: NextPage = () => {
@@ -43,14 +44,13 @@ const CustomerHome: NextPage = () => {
                             title="Customer List"
                             listLength={list?.data.customers.length ?? 0}
                             signOut={() => {
-                                console.log("signOut");
                                 signOut();
                                 // router.push('/');
                             }}
                         />
                         <Link
                             href={`/customer/add`}
-                            className="btn btn-sm btn-primary mr-1"
+                            className="font-bold w-24 h-7 py-3 px-2 bg-green-600 hover:bg-[#f5f5f5] flex items-center gap-2 cursor-pointer transition ease-in duration-300 rounded-full"
                         >
                             Add
                         </Link>
@@ -61,13 +61,24 @@ const CustomerHome: NextPage = () => {
                                     item={item}
                                     // onUpdate={updateOne} 
                                     onUpdate={() => {
-                                        console.log("update")
                                     }}
                                 />
                             ))}
                         </List>
                     </CardContent>
                 </Card>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light" />
+
             </main>
         </>
     );

@@ -34,7 +34,7 @@ const ListItemComponent: NextPage<ListItemProps> = ({ item, onUpdate }) => {
 
     return (
         <>
-            <div className="h-12 border-b flex items-center justify-start px-3">
+            <div className="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">
                 <span className="text-gray-600 tracking-wide text-sm">{item.id} - </span>
                 <span className="text-gray-600 tracking-wide text-sm">{item.firstName} - </span>
                 <span className="text-gray-600 tracking-wide text-sm">{item.lastName} - </span>
@@ -43,28 +43,17 @@ const ListItemComponent: NextPage<ListItemProps> = ({ item, onUpdate }) => {
                 <span className="text-gray-600 tracking-wide text-sm">{format(item.createdAt, 'LLLL d, yyyy')}</span>
                 <Link
                     href={`/customer/edit/${item.id}`}
-                    className="btn btn-sm btn-primary mr-1"
+                    className="btn btn-sm btn-primary mr-1 w-24 h-7 py-3 px-2 bg-blue-600 hover:bg-[#f5f5f5] flex items-center gap-2 cursor-pointer transition ease-in duration-300 rounded-full text-md"
                 >
                     Edit
                 </Link>
                 <li
-                    className="w-24 h-7 py-3 px-2 hover:bg-[#f5f5f5] flex items-center gap-2 cursor-pointer transition ease-in duration-300"
+                    className="w-24 h-7 py-3 px-2 bg-red-600 hover:bg-[#f5f5f5] flex items-center gap-2 cursor-pointer transition ease-in duration-300 rounded-full"
                     onClick={() => onDeleteHandler(item.id)}
                 >
                     <i className="bx bx-trash"></i> <span>Delete</span>
                 </li>
             </div>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light" />
         </>
     );
 };

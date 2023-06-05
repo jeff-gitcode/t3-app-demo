@@ -84,9 +84,6 @@ export const getCustomerByIdHandler = async ({ paramsInput }: {
             paramsInput.id
         );
 
-        console.log("test");
-        console.log(customer);
-
         return {
             status: 'success',
             data: {
