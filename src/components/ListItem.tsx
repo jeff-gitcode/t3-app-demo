@@ -7,6 +7,7 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 import { toast, ToastContainer } from "react-toastify";
 import { deleteCustomer } from "~/utils/customer.hooks";
+import useListItem from "~/hooks/listItem.hook";
 
 interface ListItemProps {
     item: Customer;
@@ -15,7 +16,7 @@ interface ListItemProps {
 
 
 const ListItemComponent: NextPage<ListItemProps> = ({ item, onUpdate }) => {
-    const [openMenu, setOpenMenu] = useState(false);
+    const { openMenu, toggleMenu } = useListItem();
 
     const { isLoading, mutate: deletePost } = deleteCustomer();
 
@@ -27,10 +28,6 @@ const ListItemComponent: NextPage<ListItemProps> = ({ item, onUpdate }) => {
     };
 
     if (isLoading) return <div>Deleting data...</div>;
-
-    const toggleMenu = () => {
-        setOpenMenu(!openMenu);
-    };
 
     return (
         <>
