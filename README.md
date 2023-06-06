@@ -10,6 +10,7 @@
 - [x] zod
 - [x] react-toastify
 - [x] react-hook-form
+- [x] tanstack
 
 # Demo
 ![alt text](./doc/t3-app-demo.gif)

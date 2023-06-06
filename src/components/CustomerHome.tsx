@@ -19,7 +19,6 @@ import { List, ListItem } from "~/components/ListItem";
 import { CardForm } from "~/components/CardForm";
 import router from "next/router";
 import { getCustomers } from "~/utils/customer.hooks";
-import { ToastContainer } from "react-toastify";
 
 
 const CustomerHome: NextPage = () => {
@@ -45,7 +44,7 @@ const CustomerHome: NextPage = () => {
                             listLength={list?.data.customers.length ?? 0}
                             signOut={() => {
                                 signOut();
-                                // router.push('/');
+                                router.push('/');
                             }}
                         />
                         <Link
@@ -67,18 +66,6 @@ const CustomerHome: NextPage = () => {
                         </List>
                     </CardContent>
                 </Card>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light" />
-
             </main>
         </>
     );

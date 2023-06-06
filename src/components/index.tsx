@@ -1,5 +1,6 @@
 import React from "react";
 import type { NextPage } from "next";
+import router from "next/router";
 
 export interface CardProps {
     children: React.ReactNode;
@@ -45,7 +46,10 @@ export const CardHeader: NextPage<CardHeaderProps> = ({
             <button
                 className="font-bold text-sm text-gray-600 bg-blue-600 mr-1 w-24 py-3 px-2 hover:bg-blue-200 flex items-center justify-center rounded-full text-xs"
                 type="button"
-                onClick={signOut}
+                onClick={() => {
+                    signOut;
+                    router.push('/');
+                }}
             >
                 Sign Out
             </button>
